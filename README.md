@@ -1,8 +1,12 @@
 # side-saga-immer
 
-Basically this project was created to put in practice some technologies together.
+Basically this project was created to put in practice some technologies together. Currently have only the auth from firebase.
 
 If you don't know about somethng I recommend to follow the references.
+
+#### TODO
+
+- Firestore
 
 #### References
 
