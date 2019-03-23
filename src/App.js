@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { BrowserRouter as Router, Switch, Redirect } from 'react-router-dom';
-import { hot } from 'react-hot-loader';
 
 import NoPrivateRoute from './components/NoPrivateRoute';
 import PrivateRoute from './components/PrivateRoute';
@@ -19,6 +18,7 @@ class App extends Component {
 
   render() {
     const { pendingLoadUser, user } = this.props;
+    console.log('TCL: App -> render -> user', user);
 
     if (pendingLoadUser) {
       return <div>loading...</div>;
@@ -43,4 +43,4 @@ const mapStateToProps = ({ auth: { pendingLoadUser, user } }) => ({
   pendingLoadUser
 });
 
-export default hot(module)(connect(mapStateToProps)(App));
+export default connect(mapStateToProps)(App);

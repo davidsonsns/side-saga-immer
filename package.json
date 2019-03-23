@@ -5,7 +5,8 @@
     "build": "NODE_ENV=production parcel build index.html --no-source-maps --public-url /",
     "prebuild": "npm run rmdist",
     "prestart": "npm run rmdist",
-    "rmdist": "rm -rf dist"
+    "rmdist": "rm -rf dist",
+    "clean": "rm -rf node_modules && rm -rf dist && rm -rf .cache && rm yarn.lock"
   },
   "name": "n",
   "main": "index.js",
@@ -13,17 +14,19 @@
   "devDependencies": {
     "@babel/core": "^7.4.0",
     "@babel/plugin-proposal-class-properties": "^7.4.0",
-    "parcel-bundler": "^1.12.3",
-    "react-hot-loader": "^4.8.0"
+    "@babel/plugin-transform-runtime": "^7.4.0",
+    "@babel/preset-env": "^7.4.2",
+    "@babel/preset-react": "^7.0.0",
+    "parcel-bundler": "^1.12.3"
   },
   "dependencies": {
-    "@babel/plugin-transform-runtime": "^7.4.0",
-    "@babel/runtime-corejs2": "^7.4.0",
     "axios": "^0.18.0",
+    "babel-polyfill": "^6.26.0",
     "firebase": "^5.9.1",
     "immer": "^2.1.4",
     "react": "^16.8.4",
-    "react-dom": "npm:@hot-loader/react-dom",
+    "react-dom": "^16.8.5",
+    "react-hot-loader": "^4.8.0",
     "react-redux": "^6.0.1",
     "react-router-dom": "^5.0.0",
     "redux": "^4.0.1",

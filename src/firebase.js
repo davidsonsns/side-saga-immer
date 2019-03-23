@@ -1,5 +1,6 @@
 import firebase from 'firebase/app';
 import 'firebase/auth';
+import 'firebase/firestore';
 import 'firebase/database';
 
 class Firebase {
@@ -16,6 +17,7 @@ class Firebase {
       : firebase.app();
 
     this.auth = this.app.auth();
+    this.firestore = this.app.firestore();
     this.db = this.app.database();
   }
 }

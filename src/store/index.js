@@ -24,5 +24,14 @@ export default function configureStore() {
   // run the saga
   sagaMiddleware.run(rootSaga);
 
+  // console.log('TCL: configureStore -> module.hot', module.hot);
+  // if (module.hot) {
+  //   module.hot.accept('./reducers', () => {
+  //     console.log('TCL: configureStore -> reducers');
+  //     const nextRootReducer = require('./reducers').default;
+  //     store.replaceReducer(combineReducers(nextRootReducer));
+  //   });
+  // }
+
   return store;
 }

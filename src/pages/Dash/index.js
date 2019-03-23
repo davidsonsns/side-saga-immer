@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ButtonSignOut from '../../components/ButtonSignOut';
+import FormAddItem from '../../components/FormAddItem';
 
 class Dash extends Component {
   render() {
@@ -8,12 +9,13 @@ class Dash extends Component {
 
     return (
       <div>
+        <ButtonSignOut />
         <div>
-          my email: <strong>{user.email}</strong>
+          my emsail: <strong>{user.email}</strong>
         </div>
         <div>DASH</div>
 
-        <ButtonSignOut />
+        <FormAddItem />
       </div>
     );
   }
