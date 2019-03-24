@@ -1,6 +1,10 @@
 import produce from 'immer';
 
-import { TODOS_INSERT, TODOS_INSERT_INPUT_UPDATE } from '../actions';
+import {
+  TODOS_INSERT,
+  TODOS_INSERT_INPUT_UPDATE,
+  TODOS_LIST_UPDATE_ITEM
+} from '../actions';
 
 const initialState = {
   insert: {
@@ -8,10 +12,10 @@ const initialState = {
     error: null,
     input: ''
   },
-  todos: []
+  list: []
 };
 
-export default (state = initialState, { type, error, value }) =>
+export default (state = initialState, { type, error, value, item }) =>
   produce(state, draft => {
     switch (type) {
       case TODOS_INSERT.REQUEST:
@@ -32,6 +36,17 @@ export default (state = initialState, { type, error, value }) =>
 
       case TODOS_INSERT_INPUT_UPDATE: {
         draft.insert.input = value;
+        break;
+      }
+
+      case TODOS_LIST_UPDATE_ITEM: {
+        const itemIndex = draft.list.findIndex(({ id }) => id === item.id);
+
+        if (itemIndex === -1) {
+          draft.list.push(item);
+        } else {
+          draft.list[itemIndex] = item;
+        }
         break;
       }
     }

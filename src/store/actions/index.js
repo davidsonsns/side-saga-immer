@@ -46,6 +46,13 @@ export const loadUserActions = {
 // TODOS
 export const TODOS_INSERT = createRequestTypes('TODOS_INSERT');
 export const TODOS_INSERT_INPUT_UPDATE = 'TODOS_INSERT_INPUT_UPDATE';
+export const TODOS_LIST_UPDATE_ITEM = 'TODOS_LIST_UPDATE_ITEM';
+export const TODOS_LIST_START_LISTENER = 'TODOS_LIST_START_LISTENER';
+
+export const todosListUpdateItem = item => ({
+  type: TODOS_LIST_UPDATE_ITEM,
+  item
+});
 
 export const todosInsertUpdateInput = value => ({
   type: TODOS_INSERT_INPUT_UPDATE,

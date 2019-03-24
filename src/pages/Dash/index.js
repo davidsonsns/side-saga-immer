@@ -4,8 +4,17 @@ import ButtonSignOut from '../../components/ButtonSignOut';
 import FormAddItem from '../../components/FormAddItem';
 
 class Dash extends Component {
+  state = {
+    items: []
+  };
+
+  componentDidMount() {
+    const { dispatch } = this.props;
+    dispatch({ type: 'TODOS_LIST_START_LISTENER' });
+  }
+
   render() {
-    const { user } = this.props;
+    const { user, list } = this.props;
 
     return (
       <div>
@@ -16,9 +25,14 @@ class Dash extends Component {
         <div>DASH</div>
 
         <FormAddItem />
+
+        {list.length && list.map(item => <div key={item.id}>{item.name}</div>)}
       </div>
     );
   }
 }
 
-export default connect(({ auth: { user } }) => ({ user }))(Dash);
+export default connect(({ auth: { user }, todos: { list } }) => ({
+  user,
+  list
+}))(Dash);

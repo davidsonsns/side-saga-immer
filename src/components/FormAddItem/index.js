@@ -7,6 +7,14 @@ import {
 } from '../../store/actions';
 
 class FormAddItem extends Component {
+  inputRef = React.createRef();
+
+  componentDidUpdate({ input, pending }) {
+    if (input !== this.props.input && pending !== this.props.pending) {
+      this.inputRef.current.focus();
+    }
+  }
+
   onChange = ({ target: { value } }) => {
     const { dispatch } = this.props;
 
@@ -30,6 +38,7 @@ class FormAddItem extends Component {
         onChange={this.onChange}
         onKeyPress={this.onKeyPress}
         disabled={pending}
+        ref={this.inputRef}
       />
     );
   }
