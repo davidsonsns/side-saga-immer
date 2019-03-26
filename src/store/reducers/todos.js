@@ -4,7 +4,8 @@ import {
   TODOS_INSERT,
   TODOS_INSERT_INPUT_UPDATE,
   TODOS_LIST_UPDATE_ITEM,
-  TODOS_ITEM_REMOVE
+  TODOS_ITEM_REMOVE,
+  TODOS_ITEM_CHANGE_FIELD
 } from '../actions';
 
 const initialState = {
@@ -19,7 +20,7 @@ const initialState = {
   }
 };
 
-export default (state = initialState, { type, error, value, item, id }) =>
+export default (state = initialState, { type, error, value, item, id, name }) =>
   produce(state, draft => {
     switch (type) {
       case TODOS_INSERT.REQUEST:
@@ -58,9 +59,28 @@ export default (state = initialState, { type, error, value, item, id }) =>
         break;
       }
 
+      case TODOS_ITEM_REMOVE.REQUEST: {
+        const newList = new Map(draft.list);
+        newList.set(id, { ...newList.get(id), removing: true });
+        draft.list = newList;
+        break;
+      }
+
       case TODOS_ITEM_REMOVE.SUCCESS: {
         const newList = new Map(draft.list);
         newList.delete(id);
+
+        draft.list = newList;
+        break;
+      }
+
+      case TODOS_ITEM_REMOVE.FAILURE: {
+        break;
+      }
+
+      case TODOS_ITEM_CHANGE_FIELD: {
+        const newList = new Map(draft.list);
+        newList.set(id, { ...newList.get(id), [name]: value });
 
         draft.list = newList;
         break;

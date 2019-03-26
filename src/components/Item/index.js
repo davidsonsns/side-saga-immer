@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 
-import { TODOS_ITEM_REMOVE } from '../../store/actions';
+import { TODOS_ITEM_REMOVE, todosItemChangeField } from '../../store/actions';
 
 class Item extends PureComponent {
   remove = () => {
@@ -13,16 +13,29 @@ class Item extends PureComponent {
     });
   };
 
+  onChange = ({ target: { value } }) => {
+    const {
+      dispatch,
+      data: { id }
+    } = this.props;
+
+    dispatch(todosItemChangeField({ id, name: 'name', value }));
+  };
+
   render() {
-    const { data } = this.props;
+    const {
+      data: { name, removing }
+    } = this.props;
 
     return (
       <div>
-        {data.name}
+        <textarea value={name} onChange={this.onChange} />
 
         <button type="button" onClick={this.remove}>
           Remove
         </button>
+
+        {removing && <strong>removing...</strong>}
       </div>
     );
   }

@@ -45,10 +45,11 @@ export const loadUserActions = {
 
 // TODOS
 export const TODOS_INSERT = createRequestTypes('TODOS_INSERT');
+export const TODOS_ITEM_REMOVE = createRequestTypes('TODOS_ITEM_REMOVE');
 export const TODOS_INSERT_INPUT_UPDATE = 'TODOS_INSERT_INPUT_UPDATE';
 export const TODOS_LIST_UPDATE_ITEM = 'TODOS_LIST_UPDATE_ITEM';
 export const TODOS_LIST_START_LISTENER = 'TODOS_LIST_START_LISTENER';
-export const TODOS_ITEM_REMOVE = createRequestTypes('TODOS_ITEM_REMOVE');
+export const TODOS_ITEM_CHANGE_FIELD = 'TODOS_ITEM_CHANGE_FIELD';
 
 export const todosListUpdateItem = item => ({
   type: TODOS_LIST_UPDATE_ITEM,
@@ -58,6 +59,13 @@ export const todosListUpdateItem = item => ({
 export const todosInsertUpdateInput = value => ({
   type: TODOS_INSERT_INPUT_UPDATE,
   value
+});
+
+export const todosItemChangeField = ({ name, value, id }) => ({
+  type: TODOS_ITEM_CHANGE_FIELD,
+  name,
+  value,
+  id
 });
 
 export const todosInsertActions = {

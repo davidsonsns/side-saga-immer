@@ -22,9 +22,9 @@ class FormAddItem extends Component {
   };
 
   onKeyPress = ev => {
-    const { dispatch } = this.props;
+    const { dispatch, input } = this.props;
 
-    if (ev.key === 'Enter') {
+    if (ev.key === 'Enter' && input) {
       dispatch(todosInsertActions.request());
     }
   };
