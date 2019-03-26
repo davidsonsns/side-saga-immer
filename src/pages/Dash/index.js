@@ -27,7 +27,7 @@ class Dash extends Component {
 
         <FormAddItem />
 
-        {list.size &&
+        {list.size > 0 &&
           Array.from(list).map(([_, item]) => (
             <Item key={item.id} data={item} />
           ))}

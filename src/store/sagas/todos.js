@@ -1,4 +1,12 @@
-import { takeLatest, call, put, all, take, select } from 'redux-saga/effects';
+import {
+  takeLatest,
+  call,
+  put,
+  all,
+  take,
+  select,
+  debounce
+} from 'redux-saga/effects';
 import { eventChannel } from 'redux-saga';
 
 import {
@@ -7,7 +15,9 @@ import {
   TODOS_INSERT,
   TODOS_LIST_START_LISTENER,
   todosRemoveItem,
-  TODOS_ITEM_REMOVE
+  TODOS_ITEM_REMOVE,
+  TODOS_ITEM_CHANGE_FIELD,
+  todosItemUpdateItemField
 } from '../actions';
 import fb from '../../firebase';
 
@@ -73,6 +83,18 @@ function* startRemoveItem({ id }) {
   }
 }
 
+function* startUpdateItem({ name, value, id }) {
+  try {
+    yield put(todosItemUpdateItemField.request({ name, value, id }));
+
+    yield call([fb, 'firestoreUpdateItem'], { id, value, name });
+
+    yield put(todosItemUpdateItemField.success({ id, value, name }));
+  } catch (error) {
+    yield put(todosItemUpdateItemField.failure(error));
+  }
+}
+
 /************* BEGIN WATCHERS */
 export function* watchAdd() {
   yield takeLatest(TODOS_INSERT.REQUEST, workerAdd);
@@ -85,8 +107,17 @@ export function* watchStartListener() {
 export function* watchRemoveItem() {
   yield takeLatest(TODOS_ITEM_REMOVE.REQUEST, startRemoveItem);
 }
+
+function* debounceUpdateItem() {
+  yield debounce(1000, TODOS_ITEM_CHANGE_FIELD, startUpdateItem);
+}
 /************* BEGIN WATCHERS */
 
 export default function* rootSaga() {
-  yield all([watchAdd(), watchStartListener(), watchRemoveItem()]);
+  yield all([
+    watchAdd(),
+    watchStartListener(),
+    watchRemoveItem(),
+    debounceUpdateItem()
+  ]);
 }

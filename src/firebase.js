@@ -1,7 +1,6 @@
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
-// import 'firebase/database';
 
 class Firebase {
   constructor() {
@@ -18,7 +17,6 @@ class Firebase {
 
     this.auth = this.app.auth();
     this.firestore = this.app.firestore();
-    // this.db = this.app.database();
   }
 
   firestoreAdd = data => {
@@ -33,6 +31,13 @@ class Firebase {
       .collection('todos')
       .doc(id)
       .delete();
+  };
+
+  firestoreUpdateItem = ({ id, name, value }) => {
+    return this.firestore
+      .collection('todos')
+      .doc(id)
+      .update({ [name]: value });
   };
 }
 

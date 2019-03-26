@@ -5,7 +5,8 @@ import {
   TODOS_INSERT_INPUT_UPDATE,
   TODOS_LIST_UPDATE_ITEM,
   TODOS_ITEM_REMOVE,
-  TODOS_ITEM_CHANGE_FIELD
+  TODOS_ITEM_CHANGE_FIELD,
+  TODOS_ITEM_UPDATE_ITEM_FIELD
 } from '../actions';
 
 const initialState = {
@@ -61,7 +62,7 @@ export default (state = initialState, { type, error, value, item, id, name }) =>
 
       case TODOS_ITEM_REMOVE.REQUEST: {
         const newList = new Map(draft.list);
-        newList.set(id, { ...newList.get(id), removing: true });
+        newList.set(id, { ...newList.get(id), pending: true });
         draft.list = newList;
         break;
       }
@@ -81,6 +82,22 @@ export default (state = initialState, { type, error, value, item, id, name }) =>
       case TODOS_ITEM_CHANGE_FIELD: {
         const newList = new Map(draft.list);
         newList.set(id, { ...newList.get(id), [name]: value });
+
+        draft.list = newList;
+        break;
+      }
+
+      case TODOS_ITEM_UPDATE_ITEM_FIELD.REQUEST: {
+        const newList = new Map(draft.list);
+        newList.set(id, { ...newList.get(id), pending: true });
+
+        draft.list = newList;
+        break;
+      }
+
+      case TODOS_ITEM_UPDATE_ITEM_FIELD.SUCCESS: {
+        const newList = new Map(draft.list);
+        newList.set(id, { ...newList.get(id), pending: false });
 
         draft.list = newList;
         break;

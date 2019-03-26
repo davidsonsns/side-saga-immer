@@ -24,7 +24,7 @@ class Item extends PureComponent {
 
   render() {
     const {
-      data: { name, removing }
+      data: { name, pending }
     } = this.props;
 
     return (
@@ -35,7 +35,7 @@ class Item extends PureComponent {
           Remove
         </button>
 
-        {removing && <strong>removing...</strong>}
+        {pending && <strong>pending...</strong>}
       </div>
     );
   }
