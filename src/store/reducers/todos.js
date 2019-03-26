@@ -47,7 +47,9 @@ export default (state = initialState, { type, error, value, item, id }) =>
        * @see https://github.com/mweststrate/immer#supported-object-types
        */
       case TODOS_LIST_UPDATE_ITEM: {
-        if (draft.sort.created === 'asc') {
+        if (draft.list.has(item.id)) {
+          draft.list.set(item.id, item);
+        } else if (draft.sort.created === 'asc') {
           const newList = new Map();
           newList.set(item.id, item);
 
