@@ -3,7 +3,8 @@ import produce from 'immer';
 import {
   TODOS_INSERT,
   TODOS_INSERT_INPUT_UPDATE,
-  TODOS_LIST_UPDATE_ITEM
+  TODOS_LIST_UPDATE_ITEM,
+  TODOS_ITEM_REMOVE
 } from '../actions';
 
 const initialState = {
@@ -12,10 +13,13 @@ const initialState = {
     error: null,
     input: ''
   },
-  list: []
+  list: new Map(),
+  sort: {
+    created: 'asc'
+  }
 };
 
-export default (state = initialState, { type, error, value, item }) =>
+export default (state = initialState, { type, error, value, item, id }) =>
   produce(state, draft => {
     switch (type) {
       case TODOS_INSERT.REQUEST:
@@ -39,14 +43,24 @@ export default (state = initialState, { type, error, value, item }) =>
         break;
       }
 
+      /**
+       * @see https://github.com/mweststrate/immer#supported-object-types
+       */
       case TODOS_LIST_UPDATE_ITEM: {
-        const itemIndex = draft.list.findIndex(({ id }) => id === item.id);
+        if (draft.sort.created === 'asc') {
+          const newList = new Map();
+          newList.set(item.id, item);
 
-        if (itemIndex === -1) {
-          draft.list.push(item);
-        } else {
-          draft.list[itemIndex] = item;
+          draft.list = new Map([...newList, ...draft.list]);
         }
+        break;
+      }
+
+      case TODOS_ITEM_REMOVE.SUCCESS: {
+        const newList = new Map(draft.list);
+        newList.delete(id);
+
+        draft.list = newList;
         break;
       }
     }

@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+
 import ButtonSignOut from '../../components/ButtonSignOut';
 import FormAddItem from '../../components/FormAddItem';
+import Item from '../../components/Item';
 
 class Dash extends Component {
-  state = {
-    items: []
-  };
+  state = {};
 
   componentDidMount() {
     const { dispatch } = this.props;
+
     dispatch({ type: 'TODOS_LIST_START_LISTENER' });
   }
 
@@ -26,7 +27,10 @@ class Dash extends Component {
 
         <FormAddItem />
 
-        {list.length && list.map(item => <div key={item.id}>{item.name}</div>)}
+        {list.size &&
+          Array.from(list).map(([_, item]) => (
+            <Item key={item.id} data={item} />
+          ))}
       </div>
     );
   }

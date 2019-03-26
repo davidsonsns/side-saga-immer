@@ -48,6 +48,7 @@ export const TODOS_INSERT = createRequestTypes('TODOS_INSERT');
 export const TODOS_INSERT_INPUT_UPDATE = 'TODOS_INSERT_INPUT_UPDATE';
 export const TODOS_LIST_UPDATE_ITEM = 'TODOS_LIST_UPDATE_ITEM';
 export const TODOS_LIST_START_LISTENER = 'TODOS_LIST_START_LISTENER';
+export const TODOS_ITEM_REMOVE = createRequestTypes('TODOS_ITEM_REMOVE');
 
 export const todosListUpdateItem = item => ({
   type: TODOS_LIST_UPDATE_ITEM,
@@ -63,4 +64,9 @@ export const todosInsertActions = {
   request: value => action(TODOS_INSERT[REQUEST], { value }),
   success: () => action(TODOS_INSERT[SUCCESS]),
   failure: error => action(TODOS_INSERT[FAILURE], { error })
+};
+
+export const todosRemoveItem = {
+  success: data => action(TODOS_ITEM_REMOVE[SUCCESS], data),
+  failure: error => action(TODOS_ITEM_REMOVE[FAILURE], { error })
 };
