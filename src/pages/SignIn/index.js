@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import { signinActions } from '../../store/actions';
 
@@ -58,6 +59,8 @@ class SignIn extends Component {
 
           <button type="submit">Submit</button>
         </form>
+
+        <Link to="/signup">SignUp</Link>
       </div>
     );
   }
