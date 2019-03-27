@@ -15,9 +15,14 @@ class Firebase {
         })
       : firebase.app();
 
-    this.auth = this.app.auth();
+    this.auth = firebase.auth();
     this.firestore = this.app.firestore();
   }
+
+  signOut = () => {
+    console.log('TCL: Firebase -> signOut -> signOut');
+    return this.auth.signOut();
+  };
 
   firestoreAdd = data => {
     return this.firestore.collection('todos').add({

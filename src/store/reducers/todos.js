@@ -102,5 +102,12 @@ export default (state = initialState, { type, error, value, item, id, name }) =>
         draft.list = newList;
         break;
       }
+
+      case 'SIGNOUT_SUCCESS': {
+        draft.insert = initialState.insert;
+        draft.list = initialState.list;
+        draft.sort = initialState.sort;
+        break;
+      }
     }
   });

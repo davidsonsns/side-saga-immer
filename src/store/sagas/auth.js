@@ -30,7 +30,7 @@ function* workerSaga({ email, password }) {
 
 function* workerSignOut() {
   try {
-    yield call([fb.auth, fb.auth.signOut]);
+    yield call([fb, 'signOut']);
 
     localStorage.removeItem('user');
 

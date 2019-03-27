@@ -5,7 +5,8 @@ import {
   all,
   take,
   select,
-  debounce
+  debounce,
+  fork
 } from 'redux-saga/effects';
 import { eventChannel } from 'redux-saga';
 
@@ -58,8 +59,13 @@ function* startListener() {
       });
 
     return () => {
-      listener.off();
+      listener();
     };
+  });
+
+  yield fork(function*() {
+    yield take('SIGNOUT_SUCCESS');
+    channel.close();
   });
 
   while (true) {
