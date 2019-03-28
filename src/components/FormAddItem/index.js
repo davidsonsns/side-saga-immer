@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { css } from 'emotion';
 
 import {
   todosInsertUpdateInput,
@@ -39,6 +40,13 @@ class FormAddItem extends Component {
         onKeyPress={this.onKeyPress}
         disabled={pending}
         ref={this.inputRef}
+        className={css`
+          width: 100%;
+          border-radius: 4px;
+          border-width: 1px;
+          line-height: 35px;
+          padding: 2px 7px;
+        `}
       />
     );
   }

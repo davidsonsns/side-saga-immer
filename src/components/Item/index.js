@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
+import { css } from 'emotion';
 
 import { TODOS_ITEM_REMOVE, todosItemChangeField } from '../../store/actions';
 
@@ -28,10 +29,17 @@ class Item extends PureComponent {
     } = this.props;
 
     return (
-      <div>
-        <textarea value={name} onChange={this.onChange} />
+      <div
+        className={css`
+          margin: 10px 0%;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          padding: 2px 7px;
+        `}
+      >
+        <textarea value={name} onChange={this.onChange} className={css``} />
 
-        <button type="button" onClick={this.remove}>
+        <button type="button" onClick={this.remove} className={css``}>
           Remove
         </button>
 

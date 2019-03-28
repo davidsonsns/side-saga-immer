@@ -20,8 +20,10 @@
     "parcel-bundler": "^1.12.3"
   },
   "dependencies": {
+    "@emotion/core": "^10.0.10",
     "axios": "^0.18.0",
     "babel-polyfill": "^6.26.0",
+    "emotion": "^10.0.9",
     "firebase": "^5.9.1",
     "immer": "^2.1.4",
     "react": "^16.8.4",

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import ButtonSignOut from '../../components/ButtonSignOut';
 import FormAddItem from '../../components/FormAddItem';
 import Item from '../../components/Item';
 
@@ -15,16 +14,10 @@ class Dash extends Component {
   }
 
   render() {
-    const { user, list } = this.props;
+    const { list } = this.props;
 
     return (
       <div>
-        <ButtonSignOut />
-        <div>
-          my emsail: <strong>{user.email}</strong>
-        </div>
-        <div>DASH</div>
-
         <FormAddItem />
 
         {list.size > 0 &&
@@ -36,7 +29,4 @@ class Dash extends Component {
   }
 }
 
-export default connect(({ auth: { user }, todos: { list } }) => ({
-  user,
-  list
-}))(Dash);
+export default connect(({ todos: { list } }) => ({ list }))(Dash);
