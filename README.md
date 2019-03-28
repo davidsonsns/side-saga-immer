@@ -1,12 +1,8 @@
 # side-saga-immer
 
-Basically this project was created to put in practice some technologies together. Currently have only the auth from firebase.
+Basically this project was created to put in practice some technologies together.
 
 If you don't know about somethng I recommend to follow the references.
-
-#### TODO
-
-- Firestore
 
 #### References
 
@@ -18,8 +14,6 @@ If you don't know about somethng I recommend to follow the references.
 
 - [mweststrate/immer: Create the next immutable state by mutating the current one](https://github.com/mweststrate/immer)
 
-#### Maybe :p
+- [emotion-js/emotion: CSS-in-JS library designed for high performance style composition](https://github.com/emotion-js/emotion)
 
-[emotion-js/emotion: CSS-in-JS library designed for high performance style composition](https://github.com/emotion-js/emotion)
-
-https://css-tricks.com/snippets/css/complete-guide-grid
+- [A Complete Guide to Grid \| CSS-Tricks](https://css-tricks.com/snippets/css/complete-guide-grid)
