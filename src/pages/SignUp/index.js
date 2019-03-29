@@ -38,8 +38,6 @@ class SignUp extends Component {
 
     return (
       <div>
-        <h4>SignUp</h4>
-
         {error && (
           <div>
             <strong>{error.code}: </strong>

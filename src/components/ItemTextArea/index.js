@@ -40,6 +40,7 @@ class ItemTextArea extends Component {
           this.props.onChange(ev);
           this.adjustArea();
         }}
+        placeholder="write here..."
       />
     );
   }

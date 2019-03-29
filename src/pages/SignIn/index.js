@@ -3,11 +3,14 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { signinActions } from '../../store/actions';
+import Input from '../../components/Input';
+import { css } from 'emotion';
+import Button from '../../components/Button';
 
 class SignIn extends Component {
   state = {
-    email: 'davidsonsns@gmail.com',
-    password: 'teste123'
+    email: '',
+    password: ''
   };
 
   onSubmit = e => {
@@ -37,9 +40,13 @@ class SignIn extends Component {
     } = this;
 
     return (
-      <div>
-        <h4>SignIn</h4>
-
+      <form
+        onSubmit={onSubmit}
+        className={css`
+          display: grid;
+          grid-row-gap: 15px;
+        `}
+      >
         {error && (
           <div>
             <strong>{error.code}: </strong>
@@ -47,21 +54,30 @@ class SignIn extends Component {
           </div>
         )}
 
-        <form onSubmit={onSubmit}>
-          <input name="email" type="email" value={email} onChange={onChange} />
+        <Input
+          name="email"
+          type="email"
+          value={email}
+          onChange={onChange}
+          placeholder="Email: myemail@gmail.com"
+        />
 
-          <input
-            name="password"
-            type="password"
-            value={password}
-            onChange={onChange}
-          />
+        <Input
+          name="password"
+          type="password"
+          value={password}
+          onChange={onChange}
+          placeholder="Password"
+        />
 
-          <button type="submit">Submit</button>
-        </form>
+        {(!email || !password) && <div>Complete the inputs</div>}
+
+        <Button type="submit" disabled={pending || !email || !password}>
+          {pending ? 'Wait...' : 'Submit'}
+        </Button>
 
         <Link to="/signup">SignUp</Link>
-      </div>
+      </form>
     );
   }
 }

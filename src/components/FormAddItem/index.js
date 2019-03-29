@@ -6,6 +6,7 @@ import {
   todosInsertUpdateInput,
   todosInsertActions
 } from '../../store/actions';
+import Input from '../Input';
 
 class FormAddItem extends Component {
   inputRef = React.createRef();
@@ -34,20 +35,13 @@ class FormAddItem extends Component {
     const { input, pending } = this.props;
 
     return (
-      <input
+      <Input
         value={input}
         onChange={this.onChange}
         onKeyPress={this.onKeyPress}
         disabled={pending}
         ref={this.inputRef}
         placeholder="Add item..."
-        className={css`
-          width: 100%;
-          border-radius: 4px;
-          border-width: 1px;
-          line-height: 35px;
-          padding: 2px 7px;
-        `}
       />
     );
   }

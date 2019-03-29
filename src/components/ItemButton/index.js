@@ -19,9 +19,19 @@ const ItemButton = ({ children, ...props }) => {
         &:hover {
           background: #ee5253;
         }
+
+        @media (max-width: 725px) {
+          > span {
+            display: none;
+          }
+
+          &:after {
+            content: 'X';
+          }
+        }
       `}
     >
-      {children}
+      <span>{children}</span>
     </button>
   );
 };
