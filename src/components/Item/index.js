@@ -45,9 +45,9 @@ class Item extends PureComponent {
       >
         <ItemTextArea value={name} onChange={this.onChange} />
 
-        <ItemButton onClick={this.remove}>Remove</ItemButton>
-
-        {pending && <span style={{ fontSize: 10 }}>pending...</span>}
+        <ItemButton onClick={this.remove} pending={pending}>
+          {pending ? 'Wait...' : 'Remove'}
+        </ItemButton>
       </div>
     );
   }

@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { css } from 'emotion';
 
 import { signinActions } from '../../store/actions';
 import Input from '../../components/Input';
-import { css } from 'emotion';
 import Button from '../../components/Button';
 
 class SignIn extends Component {
@@ -48,7 +48,7 @@ class SignIn extends Component {
         `}
       >
         {error && (
-          <div>
+          <div style={{ color: '#ff6b6b' }}>
             <strong>{error.code}: </strong>
             <span>{error.message}</span>
           </div>

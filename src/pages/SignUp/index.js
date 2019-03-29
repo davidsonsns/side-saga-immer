@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { css } from 'emotion';
 
+import Input from '../../components/Input';
+import Button from '../../components/Button';
 import { signupActions } from '../../store/actions';
 
 class SignUp extends Component {
@@ -37,29 +40,44 @@ class SignUp extends Component {
     } = this;
 
     return (
-      <div>
+      <form
+        onSubmit={onSubmit}
+        className={css`
+          display: grid;
+          grid-row-gap: 15px;
+        `}
+      >
         {error && (
-          <div>
+          <div style={{ color: '#ff6b6b' }}>
             <strong>{error.code}: </strong>
             <span>{error.message}</span>
           </div>
         )}
 
-        <form onSubmit={onSubmit}>
-          <input name="email" type="email" value={email} onChange={onChange} />
+        <Input
+          name="email"
+          type="email"
+          value={email}
+          onChange={onChange}
+          placeholder="Email: myemail@gmail.com"
+        />
 
-          <input
-            name="password"
-            type="password"
-            value={password}
-            onChange={onChange}
-          />
+        <Input
+          name="password"
+          type="password"
+          value={password}
+          onChange={onChange}
+          placeholder="Password"
+        />
 
-          <button type="submit">Submit</button>
-        </form>
+        {(!email || !password) && <div>Complete the inputs</div>}
+
+        <Button type="submit" disabled={pending || !email || !password}>
+          {pending ? 'Wait...' : 'Submit'}
+        </Button>
 
         <Link to="/signin">SignIn</Link>
-      </div>
+      </form>
     );
   }
 }

@@ -7,6 +7,7 @@ const ItemButton = ({ children, ...props }) => {
     <button
       type="button"
       onClick={props.onClick}
+      disabled={props.pending || false}
       className={css`
         height: 25px;
         background: #ff6b6b;
@@ -18,6 +19,11 @@ const ItemButton = ({ children, ...props }) => {
 
         &:hover {
           background: #ee5253;
+        }
+
+        &:disabled {
+          background: #ffb4b4;
+          pointer-events: none;
         }
 
         @media (max-width: 725px) {
