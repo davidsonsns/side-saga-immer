@@ -2,7 +2,9 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { css } from 'emotion';
 
+import ItemTextArea from '../ItemTextArea';
 import { TODOS_ITEM_REMOVE, todosItemChangeField } from '../../store/actions';
+import ItemButton from '../ItemButton';
 
 class Item extends PureComponent {
   remove = () => {
@@ -31,19 +33,21 @@ class Item extends PureComponent {
     return (
       <div
         className={css`
-          margin: 10px 0%;
-          border: 1px solid #ccc;
           border-radius: 4px;
-          padding: 2px 7px;
+          box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.15),
+            0 0 0 1px rgba(0, 0, 0, 0.1);
+          display: grid;
+          grid-column-gap: 10px;
+          grid-template-columns: 1fr 10vw;
+          margin: 10px 0%;
+          padding: 10px;
         `}
       >
-        <textarea value={name} onChange={this.onChange} className={css``} />
+        <ItemTextArea value={name} onChange={this.onChange} />
 
-        <button type="button" onClick={this.remove} className={css``}>
-          Remove
-        </button>
+        <ItemButton onClick={this.remove}>Remove</ItemButton>
 
-        {pending && <strong>pending...</strong>}
+        {pending && <span style={{ fontSize: 10 }}>pending...</span>}
       </div>
     );
   }

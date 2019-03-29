@@ -40,6 +40,7 @@ class FormAddItem extends Component {
         onKeyPress={this.onKeyPress}
         disabled={pending}
         ref={this.inputRef}
+        placeholder="Add item..."
         className={css`
           width: 100%;
           border-radius: 4px;

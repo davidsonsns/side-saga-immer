@@ -20,6 +20,8 @@ class Dash extends Component {
       <div>
         <FormAddItem />
 
+        {list.size > 0 && <h5>{list.size} items</h5>}
+
         {list.size > 0 &&
           Array.from(list).map(([_, item]) => (
             <Item key={item.id} data={item} />
