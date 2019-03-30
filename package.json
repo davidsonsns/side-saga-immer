@@ -6,7 +6,8 @@
     "prebuild": "npm run rmdist",
     "prestart": "npm run rmdist",
     "rmdist": "rm -rf dist",
-    "clean": "rm -rf node_modules && rm -rf dist && rm -rf .cache && rm yarn.lock"
+    "clean": "rm -rf node_modules && rm -rf dist && rm -rf .cache && rm yarn.lock",
+    "lint": "eslint src/**"
   },
   "name": "n",
   "main": "index.js",
@@ -17,6 +18,11 @@
     "@babel/plugin-transform-runtime": "^7.4.0",
     "@babel/preset-env": "^7.4.2",
     "@babel/preset-react": "^7.0.0",
+    "eslint": "^5.3.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-react": "^7.12.4",
     "parcel-bundler": "^1.12.3"
   },
   "dependencies": {
