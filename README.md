@@ -31,3 +31,6 @@ npm start
 - [emotion-js/emotion: CSS-in-JS library designed for high performance style composition](https://github.com/emotion-js/emotion)
 
 - [A Complete Guide to Grid \| CSS-Tricks](https://css-tricks.com/snippets/css/complete-guide-grid)
+
+#### TODO
+- Remove all errors and warnings from `npm run lint`
