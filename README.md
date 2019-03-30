@@ -4,6 +4,20 @@ Basically this project was created to put in practice some technologies together
 
 If you don't know about somethng I recommend to follow the references.
 
+#### Delevopment
+
+To [Add Firebase to your JavaScript Project](https://firebase.google.com/docs/web/setup) create the file `.env.development` and copy the content from `.env.template`. So add your keys from firebase.
+
+Install the dependencies
+```js
+npm install
+```
+
+Start the project
+```js
+npm start
+```
+
 #### References
 
 - [redux-saga/redux-saga: An alternative side effect model for Redux apps](https://github.com/redux-saga/redux-saga)
